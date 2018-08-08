@@ -28,33 +28,7 @@ abstract class ControllerRoot
 
     protected function renderView(DataObject $dataObject, $template = 'Main')
     {
-        try {
-            // Does the view exist?
-            $viewFileName     = str_replace('Controller', '', get_class($this));
-            $viewFileLocation = __DIR__ . "/../views/$viewFileName/$this->action.php";
-            if (!file_exists($viewFileLocation)) {
-                throw new MissingViewException(0, $viewFileName);
-            } else {
-
-                // Do we not want the template?
-                if ($template == null) {
-                    require_once $viewFileLocation;
-                } else {
-
-                    // Does the template view file exist?
-                    $templateFileLocation = __DIR__ . "/../views/Template$template.php";
-                    if (!file_exists($templateFileLocation)) {
-                        throw new MissingViewException(1, "Template$template");
-                    } else {
-                        require_once $templateFileLocation;
-                    }
-                }
-            }
-        } catch (MissingViewException $e) {
-            require_once __DIR__ . '/../controllers/ControllerErrorpage.php';
-            $errorController = new ControllerErrorpage('standard', 'standard');
-            $errorController->executeAction();
-        }
+        $this->renderAlternativeView($dataObject, $this->action, $template);
     }
 
     protected function renderAlternativeView(DataObject $dataObject, $viewName, $template = "Main")
