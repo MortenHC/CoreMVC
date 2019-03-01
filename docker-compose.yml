@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  http:
+    container_name: CoreMVC-WebApp
+    build: ./
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+      - ./app:/var/www/app

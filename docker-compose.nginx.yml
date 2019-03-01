@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  http:
+    container_name: CoreMVC-WebApp
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/usr/share/nginx/html
+      - ./app:/usr/share/nginx/app
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - CoreMVC-net
+  php:
+    container_name: CoreMVC-PHP-FPM
+    image: php:fpm
+    volumes:
+      - ./public:/usr/share/nginx/html
+      - ./app:/usr/share/nginx/app
+    networks:
+      - CoreMVC-net
+
+networks:
+  CoreMVC-net:
+    driver: bridge

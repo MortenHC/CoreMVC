@@ -73,6 +73,10 @@ The following default responses are implemented:
 
 CoreMVC makes sure to set up sessions, so `$_SESSION` should be available whenever needed.
 
+## Docker
+
+If you want to get started quickly, then use the included `docker-compose` files to spin up a quick test. There's two solutions. The default one creates a container with an Apache server, the other one creates an Nginx container solution instead.
+
 ## Author
 
 This CoreMVC framework was developed by **Morten Holm Christensen** / **MortenHC** - [GitHub](https://github.com/MortenHC) - [Twitter](https://twitter.com/MortenHC)
